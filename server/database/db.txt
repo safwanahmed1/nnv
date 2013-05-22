@@ -1,0 +1,97 @@
+
+-- ---
+-- Globals
+-- ---
+
+-- SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+-- SET FOREIGN_KEY_CHECKS=0;
+
+-- ---
+-- Table 'tblUser'
+-- 
+-- ---
+
+DROP TABLE IF EXISTS `tblUser`;
+		
+CREATE TABLE `tblUser` (
+  `id` TINYINT NULL AUTO_INCREMENT DEFAULT NULL,
+  `email` VARCHAR NULL DEFAULT NULL,
+  `pwd` VARCHAR NULL DEFAULT NULL,
+  `registerDate` DATETIME NULL DEFAULT NULL,
+  `active` TINYINT NULL DEFAULT NULL,
+  `avatar` VARCHAR NULL DEFAULT NULL,
+  `about` VARCHAR NULL DEFAULT NULL,
+  `sex` TINYINT NULL DEFAULT NULL,
+  `age` TINYINT NULL DEFAULT NULL,
+  `exp` TINYINT NULL DEFAULT NULL,
+  `gold` INTEGER(100) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+);
+
+-- ---
+-- Table 'tblGame'
+-- 
+-- ---
+
+DROP TABLE IF EXISTS `tblGame`;
+		
+CREATE TABLE `tblGame` (
+  `id` TINYINT NULL AUTO_INCREMENT DEFAULT NULL,
+  `date` DATETIME NULL DEFAULT NULL,
+  `gameName` TINYINT NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+);
+
+-- ---
+-- Table 'tblFriend'
+-- 
+-- ---
+
+DROP TABLE IF EXISTS `tblFriend`;
+		
+CREATE TABLE `tblFriend` (
+  `id` TINYINT NULL AUTO_INCREMENT DEFAULT NULL,
+  `useridA` TINYINT NULL DEFAULT NULL,
+  `useridB` TINYINT NULL DEFAULT NULL,
+  `isFriend` TINYINT NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+);
+
+-- ---
+-- Table 'tblLevel'
+-- 
+-- ---
+
+DROP TABLE IF EXISTS `tblLevel`;
+		
+CREATE TABLE `tblLevel` (
+  `id` TINYINT NULL AUTO_INCREMENT DEFAULT NULL,
+  PRIMARY KEY (`id`)
+);
+
+-- ---
+-- Foreign Keys 
+-- ---
+
+
+-- ---
+-- Table Properties
+-- ---
+
+-- ALTER TABLE `tblUser` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+-- ALTER TABLE `tblGame` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+-- ALTER TABLE `tblFriend` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+-- ALTER TABLE `tblLevel` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- ---
+-- Test Data
+-- ---
+
+-- INSERT INTO `tblUser` (`id`,`email`,`pwd`,`registerDate`,`active`,`avatar`,`about`,`sex`,`age`,`exp`,`gold`) VALUES
+-- ('','','','','','','','','','','');
+-- INSERT INTO `tblGame` (`id`,`date`,`gameName`) VALUES
+-- ('','','');
+-- INSERT INTO `tblFriend` (`id`,`useridA`,`useridB`,`isFriend`) VALUES
+-- ('','','','');
+-- INSERT INTO `tblLevel` (`id`) VALUES
+-- ('');
