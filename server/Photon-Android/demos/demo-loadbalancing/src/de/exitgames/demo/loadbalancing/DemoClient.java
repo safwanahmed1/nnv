@@ -17,7 +17,7 @@ public class DemoClient extends LoadBalancingClient implements Runnable {
 
 	Random	m_random = new Random();
 	int		m_eventCount = 0;
-    String appId = "<insert your appid here>";
+    String appId = "ngonnhaovo";
 
 	public DemoClient()
 	{
