@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="app_name">Photon Realtime Demo</string>
+	<string name="server_address">Server address</string>
+	<string name="player_name">Player name</string>
+	<string name="game_name">Game name</string>
+	<string name="player_color">Player color</string>
+	<string name="send_reliable">Send as reliable</string>
+	<string name="dispatch_period">Dispatch period (ms)</string>
+	<string name="move_period">Move period (ms)</string>
+	<string name="send_period">Send period (ms)</string>
+
+	<string name="help_text">
+		Control your marker with [UP], [DOWN], [LEFT] and [RIGHT]. Use [back] key to
+		leave game and return to menu.\n\n\n
+		<b>SETTINGS</b>\n\n
+		Random move interval:\n
+		interval in milliseconds between automatic movement of the local player.\n\n
+		send interval:\n
+		Our application will send outgoing data in regular intervals, not
+		immediately upon interaction.
+		This allows peer to cumulate more data in a single packet. \n\n
+		dispatch interval:\n
+		Incoming messages will be stored in a queue, until the
+		LitePeer.dispatchIncomingMessages() method is called.
+		Dispatching empties the queue, and will fire the related callback of each
+		incoming message.\n\n
+		Player name:\n
+		Name displayed to other players.\n\n
+		Server address:\n
+		Address of a photon realtime server. Can contain port.\n\n
+		Game name:\n
+		Unique ID of the Game instance to join / create. \n\n
+		Player color:\n
+		Color of your marker in web format (\'#RRGGBB\' or \'red\'
+		are ok).
+	</string>
+</resources>

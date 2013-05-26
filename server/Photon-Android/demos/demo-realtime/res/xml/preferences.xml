@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+  xmlns:android="http://schemas.android.com/apk/res/android">
+  <EditTextPreference android:key="player_name" android:title="@string/player_name" android:defaultValue="Android"/>
+  <EditTextPreference android:key="player_color" android:title="@string/player_color" android:defaultValue="#2222FF"/>
+  <EditTextPreference android:key="server_address" android:title="@string/server_address" android:defaultValue="192.168.1.2:5055"/>
+  <CheckBoxPreference android:key="send_reliable" android:title="@string/send_reliable" android:defaultValue="false"/>
+  <EditTextPreference android:key="game_name" android:title="@string/game_name" android:defaultValue="realtimeDemoGame000"/>
+  <EditTextPreference android:key="dispatch_period" android:title="@string/dispatch_period" android:defaultValue="50"/>
+  <EditTextPreference android:key="move_period" android:title="@string/move_period" android:defaultValue="500"/>
+  <EditTextPreference android:key="send_period" android:title="@string/send_period" android:defaultValue="50"/>
+</PreferenceScreen>

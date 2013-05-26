@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello">Hello World, DemoLoadbalancing!</string>
+    <string name="app_name">Photon Loadbalancing Demo</string>
+    <string name="btnBack">Back</string>
+    <string name="txtEnterRoomName">Enter room name</string>
+    <string name="btnCancel">Cancel</string>
+    <string name="btnCreate">Create</string>
+    <string name="btnOk">OK</string>
+</resources>

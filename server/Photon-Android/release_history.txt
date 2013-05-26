@@ -1,0 +1,134 @@
+* release_history.txt
+* Release history for the Exit Games Photon Client Library for Android
+
+(C) 2010-2012 Exit Games GmbH, http://www.exitgames.com
+
+Questions?
+	Visit: 		http://forum.exitgames.com
+				http://doc.exitgames.com
+	Write to: 	developer@exitgames.com
+
+
+*** version 3.0.1.2
+	Date: 10-25-2012
+	- fixed: encryption has got broken in 3.0.1.0
+
+
+*** version 3.0.1.1
+	Date: 10-19-2012
+	- fixed: support for byte[] as serializable datatype has got broken in 3.0.1.0, when fixing support for Byte[]; now finally both of them work
+
+
+*** version 3.0.1.0
+	Date: 10-09-2012
+	- fixed: support for Byte[] as serializable datatype has got broken in 3.0.0.1, when fixing support for byte[]
+	- added: multithreading support
+	- added: TrafficStats to photon-android
+	- changed: LoadbalancingApi no longer inheriting from LoadbalancingPeer. Its holding a variable now
+	- changed: altered demos to work with new LoadbalancingApi and TrafficStats (only for LB-demo)
+	- changed: LoadBalancingClient.opCreateRoom() no longer has the playerProperties parameter. player properties can be set before creating a room by modifying the local player instance (they will be synced on create)
+	- changed: LoadBalancingClient.opCreateRoom() now needs an array of custom room properties to be shown in the lobby or else no custom room props will be in lobby. this reduces traffic and overhead and allows rooms to have many more properties than visible in lobby
+	- changed: the Room class now caches propsListedInLobby
+
+
+*** version 3.0.0.2
+	Date: 06-19-2012
+	- changed: Some enums to classes of static final codes: LiteEventCode, LitePropertyTypes. The LiteEventCode class contains event codes which can be exteded by your game, so this enum was neither complete, nor extensible
+	- note: where a game can't extend the range of values and where the byte-value itself is not important in events or return values, enums are still in use. Example: DebugLevel, ConnectionStateValue, etc.
+	- changed: Usage of the event codes accordingly: A switch-case block is the best implementation for handling event codes (which are bytes, not enums)
+	- added: DebugLevel.atLeast() to compare one vale with another (and see if some output should be written or not).
+
+
+*** version 3.0.0.1
+	Date: 06-18-2012
+	- changed: Demo default server url in SettingsData.java to to 127.0.0.1:5055 (must be changed before running demo)
+	- fixed: issue in TCP connection
+	- fixed: Infinite blocking in Connect() for TCP when server address is unknown.
+	- fixed: Loadbalancing Demo now shows "create game" dialog, when pressing the menu button
+	- fixed: LoadBalancingClient will not crash if a event join does not contain actor-properties
+	- fixed: A player's name can now become null (if no properties are set, so just SET them)
+	- fixed: documentation which was in C# format instead of JavaDoc compatible
+	- fixed: default communication in demo is UDP
+	- fixed: usage of enums and their .value()
+	- fixed: support for int[] and byte[] as serializable datatypes. Those can be sent without issue now but incoming you will receive Integer[] and Byte[] respectively
+	- changed: LoadBalancingClient now uses the event join's actor-list to check if all actornumbers have a corresponding Player instance
+	- removed: duplicated enums
+	- internal: updated dispatch methods to not allocate memory and release it in the next step
+	- internal: enet's channels are now used synchronized throughout the library
+	- internal: TConnect.startConnection() now starts a internal Thread which does the actual socket connecting. This moves the DNS resolution and timeout in socket.connect() from the main thread 
+	- internal: TCP connect is now a process that might call OnStatusChanged() after 3 seconds with: ExceptionOnConnect and Disconnect without being able to send anything
+
+
+*** version 3.0.0.0.RC1
+	Date: 03-02-2012
+	- added: initial version of the new LoadBalancing API 
+
+
+*** version 3.0.0.0.Beta
+	Date: 10-27-2011
+	- fixed: several bugs in datatypes-support
+	- changed: serverside .NET Dictionaries are now interpreted as Java TypedHashmaps instead of Hashmaps, so that type-safety is guaranteed at runtime, not only at compile-time like with Hashmaps 
+	- changed: serverside .NET Hashtables or now interpreted as Java Hashmaps instead of Hashtables, to add support for null-pointers to them
+
+
+*** version 3.0.0.0.Alpha
+	Date: 10-06-2011
+	- added support for the following new types as payload for operations/events:
+		custom types
+		Object-arrays (meaning, not all elements have to be instances of the same class)
+		Hashmaps
+		null-pointers
+	- changed:  versioning - first two numbers of client versions from now on match the first two numbers of server version
+	- changed:  Lite operation and event codes and keys values for compatibility to the serverside changes in Lite between Photon 2 and Photon 3
+
+*** version 6.2.1
+	Date: 09-02-2011
+	- note:     make sure to edit the demo's server url in SettingsData.java. the emulator's localhost (127.0.0.1) is not running Photon. open a command window and use "ipconfig" to get the local ip.
+	- fixed:    bug within dispatch incoming reliable commands which caused gaps and skipped commands 
+	- added:    optional "consecutive" number to event move. each player adds this event "id" to each of his sends and receivers can check sequence (used as debug tool and is proof of correct sequencing)
+	- changed:  output in demo to show new numbers and event-count
+	- changed:  eventAction now directly executes the events (as intended)
+	- changed:  the demo's timer runs much more frequent now (but is still single threaded, as before, so just one thread accesses the peer)
+	- changed:  dispatch timing (every 10 ms now. adjust to anything your device can display)
+
+
+*** version 6.2.0
+	Date: 08-30-2011
+	- note:     when opening the demo with eclipse, make sure to fix the path to the library. for some reason, it's not accepted being relative to the project
+	- fixed:    the peerID is now fixed after assignment   
+	- fixed:    internal synchronization of some lists. ironically, one list to provide threading safety was not synchronized everywhere
+	- changed:  assignment of a peerId by server is only accepted once (while it's the default value), which avoids delays during connect
+
+
+*** version 6.1.0
+	Date: 03-25-2011
+	- fixed:    handling of disconnects. now the states and callbacks are done correctly
+	- fixed:    handleAck() now sets the peerState to disconnected when an ACK arrives for a disconnect command and does a disconnect callback
+	- changed:  connect() now replaces appID null or "" with "Lite"
+	- added:    LiteOpKey: DebugMessage(1)
+	- added:    LiteEventKey: ActorProperties(14), GameProperties(15)
+	- changed:  EnetPeer.disconnect() now clears all channels (as expected)
+	- changed:  opRaiseEvent() now check for properties == null and inserts empty ones as needed 
+	- changed:  debug out
+	- added:    debugMessage callback for failing socket opening
+
+
+*** version 6.0.0
+	Date: 02-23-2011
+	- updated:  library to reflect a more recent Photon Library status (compared to the DotNet client library)
+	- removed:  Neutron part of library
+	- updated:  de/serialization is now up to date with recent Photon Socketserver SDKs (v2.2.2)
+	- changed:  class structure is now split into PhotonPeer (the basis) and LitePeer. The latter adds Lite Application Operations (use this)
+	- renamed:  IPhotonListener is now IPhotonPeerListener
+	- added:    enumerations for codes and keys for operations and events as well as for status code and debug level
+	- changed:  PhotonPeer.opCustom() explicitly uses a Hashtable<Byte, Object> as parameter (making sure bytes are used on Operation parameter level)
+
+
+*** version 5.1.1
+	Date: 07-08-2009
+	- changed:  this SDK is now based on Android 1.5. As some files are now auto-generated by Android, the demo projects can no longer be built using older Android SDKs.
+
+
+*** version 5.1.0
+	Date: 03-11-2008
+	- initial release
